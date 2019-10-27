@@ -1,6 +1,5 @@
 package org.gradleplugins;
 
-import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.commons.io.FileUtils;
@@ -10,10 +9,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class DumpRestApi implements GradlePluginPortalVisitor {
+    private static final String PORTAL_API_URL = "https://gradleplugins.org/portal-api";
     private final File restApiDirectory;
     private final Gson gson = new GsonBuilder().create();
     private Map<String, String> plugins = new HashMap<>();
@@ -29,7 +28,7 @@ public class DumpRestApi implements GradlePluginPortalVisitor {
 
     @Override
     public GradlePluginVisitor visitPlugin(String pluginId, String description) {
-        plugins.put(pluginId, "https://portal-api.gradleplugins.org/plugins/" + pluginId + "/");
+        plugins.put(pluginId, PORTAL_API_URL + "/plugins/" + pluginId + "/");
 
         PluginData data = new PluginData();
         data.pluginId = pluginId;
@@ -38,7 +37,7 @@ public class DumpRestApi implements GradlePluginPortalVisitor {
         return new GradlePluginVisitor() {
             @Override
             public void visitVersion(String version, String notation) {
-                data.versions.put(version, "https://portal-api.gradleplugins.org/plugins/" + pluginId + "/" + version + "/");
+                data.versions.put(version, PORTAL_API_URL + "/plugins/" + pluginId + "/" + version + "/");
 
                 try {
                     PluginVersionData data = new PluginVersionData();
@@ -56,7 +55,7 @@ public class DumpRestApi implements GradlePluginPortalVisitor {
 
             @Override
             public void visitLatestVersion(String version) {
-                data.latestVersion = "https://portal-api.gradleplugins.org/plugins/" + pluginId + "/" + version + "/";
+                data.latestVersion = PORTAL_API_URL + "/plugins/" + pluginId + "/" + version + "/";
             }
 
             @Override
