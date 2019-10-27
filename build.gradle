@@ -42,14 +42,14 @@ def cloneTask = tasks.register("cloneRepo", CloneWebsite) {
 
 def commitTask = tasks.register("commitBucket", Commit) {
     dependsOn(cloneTask, run)
-    repositoryDirectory = clone.get().getRepositoryDirectory()
+    repositoryDirectory = cloneTask.get().getRepositoryDirectory()
     it.getUsername().set(System.getenv("USERNAME"));
     it.getPassword().set(System.getenv("PASSWORD"));
 }
 
 run {
     dependsOn(cloneTask)
-    args file('public')
+    args layout.buildDirectory.dir("gh-pages-repository").get().asFile
 }
 
 tasks.register("continuousIntegration") {
