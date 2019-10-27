@@ -157,15 +157,19 @@ public class GradlePluginPortal {
 
             String pluginDslCode = codeElements.first().text();
             Matcher pluginIdAndVersionCodeMatcher = PLUGIN_ID_AND_VERSION_CODE_PATTERN.matcher(pluginDslCode);
-            boolean b1 = pluginIdAndVersionCodeMatcher.find();
-            assert b1;
+            if (!pluginIdAndVersionCodeMatcher.find()) {
+                System.err.println(String.format("Parsing error of plugin DSL code in '%s'", pageUrl.toString()));
+                return;
+            }
             String pluginId = pluginIdAndVersionCodeMatcher.group("pluginId");
             String pluginVersion = pluginIdAndVersionCodeMatcher.group("pluginVersion");
 
             String buildscriptCode = codeElements.last().text();
             Matcher pluginNotationCodeMatcher = PLUGIN_NOTATION_CODE_PATTERN.matcher(buildscriptCode);
-            boolean b2 = pluginNotationCodeMatcher.find();
-            assert b2;
+            if (!pluginNotationCodeMatcher.find()) {
+                System.err.println(String.format("Parsing error of buildscript dependency code in '%s'", pageUrl.toString()));
+                return;
+            }
             String groupId = pluginNotationCodeMatcher.group("groupId");
             String artifactId = pluginNotationCodeMatcher.group("artifactId");
             String version = pluginNotationCodeMatcher.group("version");
