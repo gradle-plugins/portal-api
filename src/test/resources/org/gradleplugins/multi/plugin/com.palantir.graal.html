@@ -1,0 +1,608 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Gradle - Plugin: com.palantir.graal</title>
+<script src="/cdn-cgi/apps/head/YF_C8zElM-Lf12cWYmDs4p86LxQ.js"></script><link href="//fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/shared-assets/shared/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/shared-assets/shared/styles/main.css" />
+<link rel="shortcut icon" href="/shared-assets/shared/images/elephant.ico">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" integrity="sha384-fj9YEHKNa/e0CNquG4NcocjoyMATYo1k2Ff5wGB42C/9AwOlJjDoySPtNJalccfI" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" integrity="sha384-oFMgcGzKX7GaHtF4hx14KbxdsGjyfHK6m1comHjI1FH6g4m6qYre+4cnZbwaYbHD" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.3.0/lodash.min.js" integrity="sha384-iwlok8nlIqbI/sitk1qCfZOGpuddQWC39VaxAJFc+rBWPhifjTgYoWElLXH/47wS" crossorigin="anonymous"></script>
+<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-4207603-1', 'auto', 'default', {'allowLinker': true});
+        ga('default.send', 'pageview');
+
+        ga('default.require', 'linker');
+        ga('default.linker:autoLink', ['gradle.com'], false, true);
+        ga('default.set', 'transport', 'beacon');
+
+        
+          ga('create', 'UA-4207603-12', 'auto', 'plugins');
+          ga('plugins.send', 'pageview');
+          ga('plugins.set', 'transport', 'beacon');
+        
+    </script>
+</head>
+<body>
+<div id="content-wrapper">
+<header>
+<nav class="navbar navbar-default">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="https://gradle.org/">
+<img src="/shared-assets/shared/images/elephant-corner.png" width="32px" height="32px" />
+</a>
+</div>
+<div class="collapse navbar-collapse" id="navbar-collapse">
+ <ul class="nav navbar-nav">
+<li>
+<a href="https://plugins.gradle.org/">Plugins</a>
+</li>
+<li class="dropdown" id="documentation-dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Documentation <span class="caret"></span></a>
+<ul class="dropdown-menu" role="menu">
+<li id="submit-documentation-link">
+<a href="https://plugins.gradle.org/docs/submit">
+How do I add my plugin to the plugin portal?
+</a>
+</li>
+<li id="plugin-publish-plugin-documentation-link">
+<a href="https://plugins.gradle.org/docs/publish-plugin">
+How do I use the “plugin-publish” plugin?
+</a>
+</li>
+<li id="reclaiming-documentation-link">
+<a href="https://plugins.gradle.org/docs/reclaiming">
+How do I link an existing plugin to my account?
+</a>
+</li>
+<li id="deleting-documentation-link">
+<a href="https://plugins.gradle.org/docs/deleting">
+How do I delete my plugin from the portal?
+</a>
+</li>
+<li id="mirroring-documentation-link">
+<a href="https://plugins.gradle.org/docs/mirroring">
+How do I mirror the plugin portal?
+</a>
+</li>
+<li id="further-help-link">
+<a href="https://plugins.gradle.org/docs/get-help">
+How do I get further help?
+</a>
+</li>
+</ul>
+</li>
+<li id="forums-link">
+<a href="https://discuss.gradle.org" target="_blank">Forums</a>
+</li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+<a id="plugin-approval-action" href="https://plugins.gradle.org/admin/pluginapproval">
+Plugin Approval
+</a>
+</li>
+<li>
+<a id="profile-action" href="https://plugins.gradle.org/u/shad0w1nk">
+shad0w1nk
+</a>
+</li>
+<li>
+<a id="logout-action" href="https://login.gradle.org/user/logout" data-toggle="tooltip" data-placement="bottom" title="Log out">
+&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="glyphicon glyphicon-log-out" aria-hidden="true">
+</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</header>
+<div id="content">
+<div class="container plugin-page">
+<div class="clearfix">
+<div class="row top-row">
+<div class="col-md-3 logo-wrapper">
+<div class="logo">
+<a href="https://plugins.gradle.org/">
+<img src="/shared-assets/shared/images/gradle-logo-horizontal.svg" height="55.890410958904106px" width="160.0px" alt="Gradle Logo" />
+</a>
+</div>
+</div>
+<div class="col-md-4 col-md-offset-5">
+<p>Search Gradle plugins</p>
+<form id="search" action="/search">
+<div class="form-group">
+<input class="form-control" type="text" name="term" id="term" placeholder="search by tag or keyword" />
+</div>
+</form>
+</div>
+</div>
+</div>
+<div class="row plugin-detail box">
+<div class="detail">
+<a href="/plugin/com.palantir.graal">
+<h1>com.palantir.graal</h1>
+</a>
+<div class="plugin-info">
+<p class="description-text">A plugin for Gradle that adds tasks to download, extract and interact with GraalVM tooling.</p>
+</div>
+<p class="website"><a href="https://github.com/palantir/gradle-graal">https://github.com/palantir/gradle-graal</a></p>
+<div class="plugin-about">
+<ul class="list-inline plugin-tags">
+<li>
+<a class="plugin-tag" href="/search?term=graal">#graal</a>
+</li>
+<li>
+<a class="plugin-tag" href="/search?term=native-image">#native-image</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="version-info well well-sm">
+<h3>Version 0.6.0-27-ge8430f6 (latest) </h3>
+<p class="version-created-date">
+Created 23 October 2019.
+</p>
+<div class="version-description">
+<span class="description-text">A plugin for Gradle that adds tasks to download, extract and interact with GraalVM tooling.</span>
+</div>
+<div class="other-versions dropdown">
+<a class="dropdown-toggle" type="button" data-toggle="dropdown">Other versions&nbsp;<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-26-g35bdf96">0.6.0-26-g35bdf96</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-25-g2b2309b">0.6.0-25-g2b2309b</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-24-g53c59a7">0.6.0-24-g53c59a7</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-23-g03ce77a">0.6.0-23-g03ce77a</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-22-ga3782cb">0.6.0-22-ga3782cb</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-21-g4f6fb8d">0.6.0-21-g4f6fb8d</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-20-g76d8c8d">0.6.0-20-g76d8c8d</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-19-g1fbb7a2">0.6.0-19-g1fbb7a2</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-18-gc3e53f3">0.6.0-18-gc3e53f3</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-17-g991ed36">0.6.0-17-g991ed36</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-16-g4a3ef27">0.6.0-16-g4a3ef27</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-15-ge75b01b">0.6.0-15-ge75b01b</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-14-g6fa0c0a">0.6.0-14-g6fa0c0a</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-13-g82fa28b">0.6.0-13-g82fa28b</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-12-g01f1e79">0.6.0-12-g01f1e79</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-11-g4fab941">0.6.0-11-g4fab941</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-10-gbb88ad6">0.6.0-10-gbb88ad6</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-9-g59c464c">0.6.0-9-g59c464c</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-8-g252b4d1">0.6.0-8-g252b4d1</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-7-ga6c386a">0.6.0-7-ga6c386a</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-6-g964a3eb">0.6.0-6-g964a3eb</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-5-g77e5e9f">0.6.0-5-g77e5e9f</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-4-g0259d03">0.6.0-4-g0259d03</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-3-g138af58">0.6.0-3-g138af58</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-2-g48352cf">0.6.0-2-g48352cf</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0-1-ga74bcc6">0.6.0-1-ga74bcc6</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.6.0">0.6.0</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.4.0">0.4.0</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-43-gb5567e4">0.3.0-43-gb5567e4</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-42-g5394b07">0.3.0-42-g5394b07</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-41-g366bd5d">0.3.0-41-g366bd5d</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-40-g08d4ac9">0.3.0-40-g08d4ac9</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-39-gf630990">0.3.0-39-gf630990</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-38-g2968d23">0.3.0-38-g2968d23</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-37-g77aa98f">0.3.0-37-g77aa98f</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-36-g93c5a34">0.3.0-36-g93c5a34</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-35-g88e22b8">0.3.0-35-g88e22b8</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-34-g4c9de4a">0.3.0-34-g4c9de4a</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-33-gf2084a9">0.3.0-33-gf2084a9</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-32-g98a292c">0.3.0-32-g98a292c</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-31-g5056f70">0.3.0-31-g5056f70</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-29-gf737c91">0.3.0-29-gf737c91</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-28-g6c0e597">0.3.0-28-g6c0e597</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-27-gf54868f">0.3.0-27-gf54868f</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-26-gca657c3">0.3.0-26-gca657c3</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-25-g65a27de">0.3.0-25-g65a27de</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-24-g5675aec">0.3.0-24-g5675aec</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-23-g26fa21c">0.3.0-23-g26fa21c</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-22-g4184e3b">0.3.0-22-g4184e3b</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-21-g750ee39">0.3.0-21-g750ee39</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-20-g2be40b9">0.3.0-20-g2be40b9</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-19-g1dbde15">0.3.0-19-g1dbde15</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-18-g1b2f85f">0.3.0-18-g1b2f85f</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-17-g71c1d4f">0.3.0-17-g71c1d4f</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-16-gbb6fafa">0.3.0-16-gbb6fafa</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-15-gd3d4794">0.3.0-15-gd3d4794</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-14-g5e61812">0.3.0-14-g5e61812</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-13-g722e029">0.3.0-13-g722e029</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-12-ga548ba7">0.3.0-12-ga548ba7</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-11-ga34825f">0.3.0-11-ga34825f</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-10-g8e9a19e">0.3.0-10-g8e9a19e</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-9-gca64ef9">0.3.0-9-gca64ef9</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-8-g58b5c9c">0.3.0-8-g58b5c9c</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-7-gdb167e6">0.3.0-7-gdb167e6</a>
+</li>
+
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-6-g0b828af">0.3.0-6-g0b828af</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-5-g892b524">0.3.0-5-g892b524</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-4-ge8f0cb2">0.3.0-4-ge8f0cb2</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-3-g3bff93c">0.3.0-3-g3bff93c</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-2-g6c49b4d">0.3.0-2-g6c49b4d</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0-1-g86f584d">0.3.0-1-g86f584d</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.3.0">0.3.0</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-32-g5d272df">0.2.0-32-g5d272df</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-31-ga13d5d3">0.2.0-31-ga13d5d3</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-30-g4539694">0.2.0-30-g4539694</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-29-g6e42d66">0.2.0-29-g6e42d66</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-28-gfbba6c6">0.2.0-28-gfbba6c6</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-27-g6bee546">0.2.0-27-g6bee546</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-26-g5fe4541">0.2.0-26-g5fe4541</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-25-g012e9dc">0.2.0-25-g012e9dc</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-24-g27b929a">0.2.0-24-g27b929a</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-23-g278bae4">0.2.0-23-g278bae4</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-22-gb6cce4c">0.2.0-22-gb6cce4c</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-21-g9fdbd5a">0.2.0-21-g9fdbd5a</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-20-gf6d8fd4">0.2.0-20-gf6d8fd4</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-19-g20fdf83">0.2.0-19-g20fdf83</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-18-g5220205">0.2.0-18-g5220205</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-17-g543ec9e">0.2.0-17-g543ec9e</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-16-g941d6b8">0.2.0-16-g941d6b8</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-15-g4ee73eb">0.2.0-15-g4ee73eb</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-14-gf8a076b">0.2.0-14-gf8a076b</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-13-gb76f6cb">0.2.0-13-gb76f6cb</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-12-ga666d23">0.2.0-12-ga666d23</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-11-g982a0f5">0.2.0-11-g982a0f5</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-10-gc5deb6f">0.2.0-10-gc5deb6f</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-9-g459f369">0.2.0-9-g459f369</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-8-ge20b964">0.2.0-8-ge20b964</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-7-g8caaa0a">0.2.0-7-g8caaa0a</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-6-g2a80365">0.2.0-6-g2a80365</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-5-g50c7d97">0.2.0-5-g50c7d97</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-4-g255fd1f">0.2.0-4-g255fd1f</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-3-g7f884ba">0.2.0-3-g7f884ba</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-2-g4155cf9">0.2.0-2-g4155cf9</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0-1-g29e1db2">0.2.0-1-g29e1db2</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.2.0">0.2.0</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.1.1-8-g6ce3c58">0.1.1-8-g6ce3c58</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.1.1-7-gdcfac74">0.1.1-7-gdcfac74</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.1.1-6-ga52bf1b">0.1.1-6-ga52bf1b</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.1.1-5-gb97444e">0.1.1-5-gb97444e</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.1.1-3-g6e94f25">0.1.1-3-g6e94f25</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.1.1-2-gc52bb12">0.1.1-2-gc52bb12</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.1.1-1-gae7711f">0.1.1-1-gae7711f</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.1.1">0.1.1</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.1.0-5-g7641b9a">0.1.0-5-g7641b9a</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.1.0-3-g2b54c02">0.1.0-3-g2b54c02</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.1.0-2-g0507716">0.1.0-2-g0507716</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.1.0-1-g3168095">0.1.0-1-g3168095</a>
+</li>
+<li>
+<a href="/plugin/com.palantir.graal/0.1.0">0.1.0</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="tabpanel">
+<ul class="nav nav-tabs" id="tab-bar" role="tablist">
+<li role="groovy-usage" class="active">
+<a id="groovy-usage-tab" href="#groovy-usage" role="tab" aria-controls="groovy-usage" data-toggle="tab">Groovy</a>
+</li>
+<li role="kotlin-usage">
+<a id="kotlin-usage-tab" href="#kotlin-usage" role="tab" aria-controls="kotlin-usage" data-toggle="tab">Kotlin</a>
+</li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane use active" id="groovy-usage">
+<h3>Using the <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">plugins DSL</a>:</h3>
+<pre><code class="language-groovy">plugins {
+  id "com.palantir.graal" version "0.6.0-27-ge8430f6"
+}</code></pre>
+<h3>Using <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:old_plugin_application">legacy plugin application</a>:</h3>
+<pre><code class="language-groovy">buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "gradle.plugin.com.palantir.graal:gradle-graal:0.6.0-27-ge8430f6"
+  }
+}
+
+apply plugin: "com.palantir.graal"</code></pre>
+</div>
+<div role="tabpanel" class="tab-pane use" id="kotlin-usage">
+<h3>Using the <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">plugins DSL</a>:</h3>
+<pre><code class="language-kotlin">plugins {
+  id("com.palantir.graal") version "0.6.0-27-ge8430f6"
+}</code></pre>
+<h3>Using <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:old_plugin_application">legacy plugin application</a>:</h3>
+<pre><code class="language-kotlin">buildscript {
+  repositories {
+    maven {
+      url = uri("https://plugins.gradle.org/m2/")
+    }
+  }
+  dependencies {
+    classpath("gradle.plugin.com.palantir.graal:gradle-graal:0.6.0-27-ge8430f6")
+  }
+}
+
+apply(plugin = "com.palantir.graal")</code></pre>
+</div>
+</div>
+</div>
+<p>
+<a href="https://docs.gradle.org/current/userguide/plugins.html#sec:subprojects_plugins_dsl">
+<span class="glyphicon glyphicon-chevron-right"></span> Learn how to apply plugins to subprojects
+</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<footer>
+<p class="copyright">&copy; <a href="https://gradle.org/company/">Gradle, Inc.</a> 2019</p>
+</footer>
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
+<script type="text/javascript">
+piAId = '69052';
+piCId = '28805';
+
+(function() {
+function async_load(){
+var s = document.createElement('script'); s.type = 'text/javascript';
+s.src = ('https:' == document.location.protocol ? 'https://pi' : 'http://cdn') + '.pardot.com/pd.js';
+var c = document.getElementsByTagName('script')[0]; c.parentNode.insertBefore(s, c);
+}
+if(window.attachEvent) { window.attachEvent('onload', async_load); }
+else { window.addEventListener('load', async_load, false); }
+})();
+</script>
+<script src="/shared-assets/shared/scripts/prism.js"></script>
+<script src="/shared-assets/shared/scripts/collapse.js"></script>
+</body>
+</html>

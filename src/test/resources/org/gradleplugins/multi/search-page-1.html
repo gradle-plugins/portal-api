@@ -1,0 +1,715 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Gradle - Plugins</title>
+<script src="/cdn-cgi/apps/head/YF_C8zElM-Lf12cWYmDs4p86LxQ.js"></script><link href="//fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/shared-assets/shared/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/shared-assets/shared/styles/main.css" />
+<link rel="shortcut icon" href="/shared-assets/shared/images/elephant.ico">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" integrity="sha384-fj9YEHKNa/e0CNquG4NcocjoyMATYo1k2Ff5wGB42C/9AwOlJjDoySPtNJalccfI" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" integrity="sha384-oFMgcGzKX7GaHtF4hx14KbxdsGjyfHK6m1comHjI1FH6g4m6qYre+4cnZbwaYbHD" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.3.0/lodash.min.js" integrity="sha384-iwlok8nlIqbI/sitk1qCfZOGpuddQWC39VaxAJFc+rBWPhifjTgYoWElLXH/47wS" crossorigin="anonymous"></script>
+<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-4207603-1', 'auto', 'default', {'allowLinker': true});
+        ga('default.send', 'pageview');
+
+        ga('default.require', 'linker');
+        ga('default.linker:autoLink', ['gradle.com'], false, true);
+        ga('default.set', 'transport', 'beacon');
+
+        
+          ga('create', 'UA-4207603-12', 'auto', 'plugins');
+          ga('plugins.send', 'pageview');
+          ga('plugins.set', 'transport', 'beacon');
+        
+    </script>
+</head>
+<body>
+<div id="content-wrapper">
+<header>
+<nav class="navbar navbar-default">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="https://gradle.org/">
+<img src="/shared-assets/shared/images/elephant-corner.png" width="32px" height="32px" />
+</a>
+</div>
+<div class="collapse navbar-collapse" id="navbar-collapse">
+<ul class="nav navbar-nav">
+<li>
+<a href="https://plugins.gradle.org/">Plugins</a>
+</li>
+<li class="dropdown" id="documentation-dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Documentation <span class="caret"></span></a>
+<ul class="dropdown-menu" role="menu">
+<li id="submit-documentation-link">
+<a href="https://plugins.gradle.org/docs/submit">
+How do I add my plugin to the plugin portal?
+</a>
+</li>
+<li id="plugin-publish-plugin-documentation-link">
+<a href="https://plugins.gradle.org/docs/publish-plugin">
+How do I use the “plugin-publish” plugin?
+</a>
+</li>
+<li id="reclaiming-documentation-link">
+<a href="https://plugins.gradle.org/docs/reclaiming">
+How do I link an existing plugin to my account?
+</a>
+</li>
+<li id="deleting-documentation-link">
+<a href="https://plugins.gradle.org/docs/deleting">
+How do I delete my plugin from the portal?
+</a>
+</li>
+<li id="mirroring-documentation-link">
+<a href="https://plugins.gradle.org/docs/mirroring">
+How do I mirror the plugin portal?
+</a>
+</li>
+<li id="further-help-link">
+<a href="https://plugins.gradle.org/docs/get-help">
+How do I get further help?
+</a>
+</li>
+</ul>
+</li>
+<li id="forums-link">
+<a href="https://discuss.gradle.org" target="_blank">Forums</a>
+</li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+<a id="plugin-approval-action" href="https://plugins.gradle.org/admin/pluginapproval">
+Plugin Approval
+</a>
+</li>
+<li>
+<a id="profile-action" href="https://plugins.gradle.org/u/shad0w1nk">
+shad0w1nk
+</a>
+</li>
+<li>
+<a id="logout-action" href="https://login.gradle.org/user/logout" data-toggle="tooltip" data-placement="bottom" title="Log out">
+&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="glyphicon glyphicon-log-out" aria-hidden="true">
+</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</header>
+<div id="content">
+<div class="container search-page">
+<div class="row">
+<div class="logo">
+<a href="https://plugins.gradle.org/">
+<img src="/shared-assets/shared/images/gradle-logo-horizontal.svg" height="87.32876712328768px" width="250.0px" alt="Gradle Logo" />
+</a>
+</div>
+</div>
+<h1>Search Gradle plugins</h1>
+<div class="row search">
+<div class="col-md-12">
+<form id="search" action="/search">
+<div class="form-group">
+<input class="form-control" type="text" name="term" id="term" placeholder="search by tag or keyword" autofocus="autofocus" />
+</div>
+</form>
+<a class='want-to-include' href="/docs/submit">
+Want to include your Gradle plugin here?
+</a>
+</div>
+</div>
+<div class="row results box">
+<div class="col-md-12">
+<table id="search-results" class="table table-responsive">
+<thead>
+<tr>
+<th>Plugin</th>
+<th class="version">Latest Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="name">
+<h3 class="plugin-id">
+<a href="/plugin/com.github.vlsi.checksum-dependency.html">
+com.github.vlsi.checksum-dependency
+</a>
+</h3>
+<p>Validates dependency artifacts for expected checksums</p>
+<ul class="list-inline plugin-tags">
+<li>
+<a href="/search?term=security" class="plugin-tag">
+#security
+</a>
+</li>
+<li>
+<a href="/search?term=verification" class="plugin-tag">
+#verification
+</a>
+</li>
+</ul>
+</td>
+<td class="version">
+<span class='latest-version'>1.36.0</span>
+<br />
+<span class='date'>(24 October 2019)</span>
+</td>
+</tr>
+<tr>
+<td class="name">
+<h3 class="plugin-id">
+<a href="/plugin/com.bugsnag.android.gradle.html">
+com.bugsnag.android.gradle
+</a>
+</h3>
+<p>Gradle plugin to automatically upload ProGuard mapping files to Bugsnag.</p>
+<ul class="list-inline plugin-tags">
+<li>
+<a href="/search?term=bugsnag" class="plugin-tag">
+#bugsnag
+</a>
+</li>
+<li>
+<a href="/search?term=proguard" class="plugin-tag">
+#proguard
+</a>
+</li>
+<li>
+<a href="/search?term=android" class="plugin-tag">
+#android
+</a>
+</li>
+<li>
+<a href="/search?term=upload" class="plugin-tag">
+#upload
+</a>
+</li>
+</ul>
+</td>
+<td class="version">
+<span class='latest-version'>4.7.1</span>
+<br />
+<span class='date'>(24 October 2019)</span>
+</td>
+</tr>
+<tr>
+<td class="name">
+<h3 class="plugin-id">
+<a href="/plugin/de.fayard.refreshVersions.html">
+de.fayard.refreshVersions
+</a>
+</h3>
+<p>Painless dependencies management</p>
+<ul class="list-inline plugin-tags">
+<li>
+<a href="/search?term=dependencies" class="plugin-tag">
+#dependencies
+</a>
+</li>
+<li>
+<a href="/search?term=versions" class="plugin-tag">
+#versions
+</a>
+</li>
+<li>
+<a href="/search?term=buildsrc" class="plugin-tag">
+#buildsrc
+</a>
+</li>
+<li>
+<a href="/search?term=kotlin" class="plugin-tag">
+#kotlin
+</a>
+</li>
+<li>
+<a href="/search?term=kotlin-dsl" class="plugin-tag">
+#kotlin-dsl
+</a>
+</li>
+</ul>
+</td>
+<td class="version">
+<span class='latest-version'>0.8.0</span>
+<br />
+<span class='date'>(24 October 2019)</span>
+</td>
+</tr>
+<tr>
+<td class="name">
+<h3 class="plugin-id">
+<a href="/plugin/io.github.art.settings.html">
+io.github.art.settings
+</a>
+</h3>
+<p>A plugin that helps you to configure JVM projects</p>
+<ul class="list-inline plugin-tags">
+<li>
+<a href="/search?term=art" class="plugin-tag">
+#art
+</a>
+</li>
+<li>
+<a href="/search?term=configuring" class="plugin-tag">
+#configuring
+</a>
+</li>
+<li>
+<a href="/search?term=application" class="plugin-tag">
+#application
+</a>
+</li>
+<li>
+<a href="/search?term=java" class="plugin-tag">
+#java
+</a>
+</li>
+<li>
+<a href="/search?term=kotlin" class="plugin-tag">
+#kotlin
+</a>
+</li>
+<li>
+<a href="/search?term=groovy" class="plugin-tag">
+#groovy
+</a>
+</li>
+<li>
+<a href="/search?term=spock" class="plugin-tag">
+#spock
+</a>
+</li>
+<li>
+<a href="/search?term=spock+framework" class="plugin-tag">
+#spock framework
+</a>
+</li>
+<li>
+<a href="/search?term=jmh" class="plugin-tag">
+#jmh
+</a>
+</li>
+<li>
+<a href="/search?term=gatling" class="plugin-tag">
+#gatling
+</a>
+</li>
+</ul>
+</td>
+<td class="version">
+<span class='latest-version'>1.0.88-SNAPSHOT</span>
+<br />
+<span class='date'>(24 October 2019)</span>
+</td>
+</tr>
+<tr>
+<td class="name">
+<h3 class="plugin-id">
+<a href="/plugin/io.github.art.project.html">
+io.github.art.project
+</a>
+</h3>
+<p>A plugin that helps you to configure JVM projects</p>
+<ul class="list-inline plugin-tags">
+<li>
+<a href="/search?term=art" class="plugin-tag">
+#art
+</a>
+</li>
+<li>
+<a href="/search?term=configuring" class="plugin-tag">
+#configuring
+</a>
+</li>
+<li>
+<a href="/search?term=application" class="plugin-tag">
+#application
+</a>
+</li>
+<li>
+<a href="/search?term=java" class="plugin-tag">
+#java
+</a>
+</li>
+<li>
+<a href="/search?term=kotlin" class="plugin-tag">
+#kotlin
+</a>
+</li>
+<li>
+<a href="/search?term=groovy" class="plugin-tag">
+#groovy
+</a>
+</li>
+<li>
+<a href="/search?term=spock" class="plugin-tag">
+#spock
+</a>
+</li>
+<li>
+<a href="/search?term=spock+framework" class="plugin-tag">
+#spock framework
+</a>
+</li>
+<li>
+<a href="/search?term=jmh" class="plugin-tag">
+#jmh
+</a>
+</li>
+<li>
+<a href="/search?term=gatling" class="plugin-tag">
+#gatling
+</a>
+</li>
+</ul>
+</td>
+<td class="version">
+<span class='latest-version'>1.0.88-SNAPSHOT</span>
+<br />
+<span class='date'>(24 October 2019)</span>
+</td>
+</tr>
+<tr>
+<td class="name">
+<h3 class="plugin-id">
+<a href="/plugin/nebula.java-cross-compile.html">
+nebula.java-cross-compile
+</a>
+</h3>
+<p>Gradle resolution rules plugin</p>
+<ul class="list-inline plugin-tags">
+<li>
+<a href="/search?term=nebula" class="plugin-tag">
+#nebula
+</a>
+</li>
+<li>
+<a href="/search?term=compile" class="plugin-tag">
+#compile
+</a>
+</li>
+<li>
+<a href="/search?term=java" class="plugin-tag">
+#java
+</a>
+</li>
+<li>
+<a href="/search?term=groovy" class="plugin-tag">
+#groovy
+</a>
+</li>
+<li>
+<a href="/search?term=kotlin" class="plugin-tag">
+#kotlin
+</a>
+</li>
+</ul>
+</td>
+<td class="version">
+<span class='latest-version'>4.0.0</span>
+<br />
+<span class='date'>(24 October 2019)</span>
+</td>
+</tr>
+<tr>
+<td class="name">
+<h3 class="plugin-id">
+<a href="/plugin/com.liferay.js.transpiler.html">
+com.liferay.js.transpiler
+</a>
+</h3>
+<p>The JS Transpiler Gradle plugin lets you run metal-cli in order to build Metal.js code, compile Soy files, and transpile ES6 to ES5.</p>
+<ul class="list-inline plugin-tags">
+<li>
+<a href="/search?term=closure" class="plugin-tag">
+#closure
+</a>
+</li>
+<li>
+<a href="/search?term=ecmascript" class="plugin-tag">
+#ecmascript
+</a>
+</li>
+<li>
+<a href="/search?term=es6" class="plugin-tag">
+#es6
+</a>
+</li>
+<li>
+<a href="/search?term=javascript" class="plugin-tag">
+#javascript
+</a>
+</li>
+<li>
+<a href="/search?term=js" class="plugin-tag">
+#js
+</a>
+</li>
+<li>
+<a href="/search?term=liferay" class="plugin-tag">
+#liferay
+</a>
+</li>
+<li>
+<a href="/search?term=metal" class="plugin-tag">
+#metal
+</a>
+</li>
+<li>
+<a href="/search?term=metaljs" class="plugin-tag">
+#metaljs
+</a>
+</li>
+<li>
+<a href="/search?term=node" class="plugin-tag">
+#node
+</a>
+</li>
+<li>
+<a href="/search?term=nodejs" class="plugin-tag">
+#nodejs
+</a>
+</li>
+<li>
+<a href="/search?term=soy" class="plugin-tag">
+#soy
+</a>
+</li>
+</ul>
+</td>
+<td class="version">
+<span class='latest-version'>2.4.48</span>
+<br />
+<span class='date'>(23 October 2019)</span>
+</td>
+</tr>
+<tr>
+<td class="name">
+<h3 class="plugin-id">
+<a href="/plugin/com.liferay.js.transpiler.base.html">
+com.liferay.js.transpiler.base
+</a>
+</h3>
+<p>The JS Transpiler Base Gradle plugin lets you use Gradle dependencies (such as external module or project dependencies) in Node.js scripts.</p>
+<ul class="list-inline plugin-tags">
+<li>
+<a href="/search?term=closure" class="plugin-tag">
+#closure
+</a>
+</li>
+<li>
+<a href="/search?term=ecmascript" class="plugin-tag">
+#ecmascript
+</a>
+</li>
+<li>
+<a href="/search?term=es6" class="plugin-tag">
+#es6
+</a>
+</li>
+<li>
+<a href="/search?term=javascript" class="plugin-tag">
+#javascript
+</a>
+</li>
+<li>
+<a href="/search?term=js" class="plugin-tag">
+#js
+</a>
+</li>
+<li>
+<a href="/search?term=liferay" class="plugin-tag">
+#liferay
+</a>
+</li>
+<li>
+<a href="/search?term=metal" class="plugin-tag">
+#metal
+</a>
+</li>
+<li>
+<a href="/search?term=metaljs" class="plugin-tag">
+#metaljs
+</a>
+</li>
+<li>
+<a href="/search?term=node" class="plugin-tag">
+#node
+</a>
+</li>
+<li>
+<a href="/search?term=nodejs" class="plugin-tag">
+#nodejs
+</a>
+</li>
+<li>
+<a href="/search?term=soy" class="plugin-tag">
+#soy
+</a>
+</li>
+</ul>
+</td>
+<td class="version">
+<span class='latest-version'>2.4.48</span>
+<br />
+<span class='date'>(23 October 2019)</span>
+</td>
+</tr>
+<tr>
+<td class="name">
+<h3 class="plugin-id">
+<a href="/plugin/com.liferay.js.module.config.generator.html">
+com.liferay.js.module.config.generator
+</a>
+</h3>
+<p>The JS Module Config Generator Gradle plugin lets you run the Liferay AMD Module Config Generator to generate the configuration file needed to load AMD files via combo loader in Liferay.</p>
+<ul class="list-inline plugin-tags">
+<li>
+<a href="/search?term=amd" class="plugin-tag">
+#amd
+</a>
+</li>
+<li>
+<a href="/search?term=javascript" class="plugin-tag">
+#javascript
+</a>
+</li>
+<li>
+<a href="/search?term=js" class="plugin-tag">
+#js
+</a>
+</li>
+<li>
+<a href="/search?term=liferay" class="plugin-tag">
+#liferay
+</a>
+</li>
+<li>
+<a href="/search?term=node" class="plugin-tag">
+#node
+</a>
+</li>
+<li>
+<a href="/search?term=nodejs" class="plugin-tag">
+#nodejs
+</a>
+</li>
+</ul>
+</td>
+<td class="version">
+<span class='latest-version'>2.1.69</span>
+<br />
+<span class='date'>(23 October 2019)</span>
+</td>
+</tr>
+<tr>
+<td class="name">
+<h3 class="plugin-id">
+<a href="/plugin/com.liferay.jsdoc.html">
+com.liferay.jsdoc
+</a>
+</h3>
+<p>The JSDoc Gradle plugin lets you run the JSDoc tool in order to generate documentation for your project&#x27;s JavaScript files.</p>
+<ul class="list-inline plugin-tags">
+<li>
+<a href="/search?term=docs" class="plugin-tag">
+#docs
+</a>
+</li>
+<li>
+<a href="/search?term=documentation" class="plugin-tag">
+#documentation
+</a>
+</li>
+<li>
+<a href="/search?term=javascript" class="plugin-tag">
+#javascript
+</a>
+</li>
+<li>
+<a href="/search?term=js" class="plugin-tag">
+#js
+</a>
+</li>
+<li>
+<a href="/search?term=jsdoc" class="plugin-tag">
+#jsdoc
+</a>
+</li>
+<li>
+<a href="/search?term=liferay" class="plugin-tag">
+#liferay
+</a>
+</li>
+<li>
+<a href="/search?term=node" class="plugin-tag">
+#node
+</a>
+</li>
+<li>
+<a href="/search?term=nodejs" class="plugin-tag">
+#nodejs
+</a>
+</li>
+</ul>
+</td>
+<td class="version">
+<span class='latest-version'>2.0.46</span>
+<br />
+<span class='date'>(23 October 2019)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="page-link clearfix">
+<a class="btn btn-default" href="/search.html">Previous</a>
+<a class="btn btn-default" href="/search-page-2.html">Next</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer>
+<p class="copyright">&copy; <a href="https://gradle.org/company/">Gradle, Inc.</a> 2019</p>
+</footer>
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
+<script type="text/javascript">
+piAId = '69052';
+piCId = '28805';
+
+(function() {
+function async_load(){
+var s = document.createElement('script'); s.type = 'text/javascript';
+s.src = ('https:' == document.location.protocol ? 'https://pi' : 'http://cdn') + '.pardot.com/pd.js';
+var c = document.getElementsByTagName('script')[0]; c.parentNode.insertBefore(s, c);
+}
+if(window.attachEvent) { window.attachEvent('onload', async_load); }
+else { window.addEventListener('load', async_load, false); }
+})();
+</script>
+<script src="/shared-assets/shared/scripts/prism.js"></script>
+<script src="/shared-assets/shared/scripts/collapse.js"></script>
+</body>
+</html>

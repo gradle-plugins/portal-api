@@ -1,0 +1,337 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Gradle - Plugin: com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension</title>
+<script src="/cdn-cgi/apps/head/YF_C8zElM-Lf12cWYmDs4p86LxQ.js"></script><link href="//fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/shared-assets/shared/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/shared-assets/shared/styles/main.css" />
+<link rel="shortcut icon" href="/shared-assets/shared/images/elephant.ico">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" integrity="sha384-fj9YEHKNa/e0CNquG4NcocjoyMATYo1k2Ff5wGB42C/9AwOlJjDoySPtNJalccfI" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" integrity="sha384-oFMgcGzKX7GaHtF4hx14KbxdsGjyfHK6m1comHjI1FH6g4m6qYre+4cnZbwaYbHD" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.3.0/lodash.min.js" integrity="sha384-iwlok8nlIqbI/sitk1qCfZOGpuddQWC39VaxAJFc+rBWPhifjTgYoWElLXH/47wS" crossorigin="anonymous"></script>
+<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-4207603-1', 'auto', 'default', {'allowLinker': true});
+        ga('default.send', 'pageview');
+
+        ga('default.require', 'linker');
+        ga('default.linker:autoLink', ['gradle.com'], false, true);
+        ga('default.set', 'transport', 'beacon');
+
+        
+          ga('create', 'UA-4207603-12', 'auto', 'plugins');
+          ga('plugins.send', 'pageview');
+          ga('plugins.set', 'transport', 'beacon');
+        
+    </script>
+</head>
+<body>
+<div id="content-wrapper">
+<header>
+<nav class="navbar navbar-default">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="https://gradle.org/">
+<img src="/shared-assets/shared/images/elephant-corner.png" width="32px" height="32px" />
+</a>
+</div>
+<div class="collapse navbar-collapse" id="navbar-collapse">
+<ul class="nav navbar-nav">
+<li>
+<a href="https://plugins.gradle.org/">Plugins</a>
+</li>
+<li class="dropdown" id="documentation-dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Documentation <span class="caret"></span></a>
+<ul class="dropdown-menu" role="menu">
+<li id="submit-documentation-link">
+<a href="https://plugins.gradle.org/docs/submit">
+How do I add my plugin to the plugin portal?
+</a>
+</li>
+<li id="plugin-publish-plugin-documentation-link">
+<a href="https://plugins.gradle.org/docs/publish-plugin">
+How do I use the “plugin-publish” plugin?
+</a>
+</li>
+<li id="reclaiming-documentation-link">
+<a href="https://plugins.gradle.org/docs/reclaiming">
+How do I link an existing plugin to my account?
+</a>
+</li>
+<li id="deleting-documentation-link">
+<a href="https://plugins.gradle.org/docs/deleting">
+How do I delete my plugin from the portal?
+</a>
+</li>
+<li id="mirroring-documentation-link">
+<a href="https://plugins.gradle.org/docs/mirroring">
+How do I mirror the plugin portal?
+</a>
+</li>
+<li id="further-help-link">
+<a href="https://plugins.gradle.org/docs/get-help">
+How do I get further help?
+</a>
+</li>
+</ul>
+</li>
+<li id="forums-link">
+<a href="https://discuss.gradle.org" target="_blank">Forums</a>
+</li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+ <li>
+<a id="plugin-approval-action" href="https://plugins.gradle.org/admin/pluginapproval">
+Plugin Approval
+</a>
+</li>
+<li>
+<a id="profile-action" href="https://plugins.gradle.org/u/shad0w1nk">
+shad0w1nk
+</a>
+</li>
+<li>
+<a id="logout-action" href="https://login.gradle.org/user/logout" data-toggle="tooltip" data-placement="bottom" title="Log out">
+&nbsp;&nbsp;&nbsp;&nbsp;
+<span class="glyphicon glyphicon-log-out" aria-hidden="true">
+</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</header>
+<div id="content">
+<div class="container plugin-page">
+<div class="clearfix">
+<div class="row top-row">
+<div class="col-md-3 logo-wrapper">
+<div class="logo">
+<a href="https://plugins.gradle.org/">
+<img src="/shared-assets/shared/images/gradle-logo-horizontal.svg" height="55.890410958904106px" width="160.0px" alt="Gradle Logo" />
+</a>
+</div>
+</div>
+<div class="col-md-4 col-md-offset-5">
+<p>Search Gradle plugins</p>
+<form id="search" action="/search">
+<div class="form-group">
+<input class="form-control" type="text" name="term" id="term" placeholder="search by tag or keyword" />
+</div>
+</form>
+</div>
+</div>
+</div>
+<div class="row plugin-detail box">
+<div class="detail">
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension">
+<h1>com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension</h1>
+</a>
+<div class="plugin-info">
+<p class="description-text">Orcas is a schema management and deployment framework for Oracle Databases.</p>
+</div>
+<p class="website"><a href="http://www.orcasdb.org/">http://www.orcasdb.org/</a></p>
+<div class="plugin-about">
+<ul class="list-inline plugin-tags">
+<li>
+<a class="plugin-tag" href="/search?term=sql">#sql</a>
+</li>
+<li>
+<a class="plugin-tag" href="/search?term=oracle">#oracle</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="version-info well well-sm">
+<h3>Version 7.1.0 (latest) </h3>
+<p class="version-created-date">
+Created 24 October 2019.
+</p>
+<div class="version-description">
+<span class="description-text">Orcas is a schema management and deployment framework for Oracle Databases.</span>
+</div>
+<div class="other-versions dropdown">
+<a class="dropdown-toggle" type="button" data-toggle="dropdown">Other versions&nbsp;<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/7.0.4">7.0.4</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/7.0.3">7.0.3</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/7.0.2">7.0.2</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/7.0.1">7.0.1</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/7.0.0">7.0.0</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/6.5.1">6.5.1</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/6.5.0">6.5.0</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/6.4.2">6.4.2</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/6.4.1">6.4.1</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/6.4.0">6.4.0</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/6.3.2">6.3.2</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/6.3.1">6.3.1</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/6.3.0">6.3.0</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/6.2.0">6.2.0</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/6.1.0">6.1.0</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/6.0.2">6.0.2</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/6.0.1">6.0.1</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/6.0.0">6.0.0</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/5.9.0">5.9.0</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/5.8.5">5.8.5</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/5.8.4">5.8.4</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/5.8.3">5.8.3</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/5.8.2">5.8.2</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/5.8.1">5.8.1</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/5.8.0">5.8.0</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/5.7.0">5.7.0</a>
+</li>
+<li>
+<a href="/plugin/com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension/5.6.0">5.6.0</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="tabpanel">
+<ul class="nav nav-tabs" id="tab-bar" role="tablist">
+<li role="groovy-usage" class="active">
+<a id="groovy-usage-tab" href="#groovy-usage" role="tab" aria-controls="groovy-usage" data-toggle="tab">Groovy</a>
+</li>
+<li role="kotlin-usage">
+<a id="kotlin-usage-tab" href="#kotlin-usage" role="tab" aria-controls="kotlin-usage" data-toggle="tab">Kotlin</a>
+</li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane use active" id="groovy-usage">
+<h3>Using the <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">plugins DSL</a>:</h3>
+<pre><code class="language-groovy">plugins {
+  id "com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension" version "7.1.0"
+}</code></pre>
+<h3>Using <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:old_plugin_application">legacy plugin application</a>:</h3>
+<pre><code class="language-groovy">buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "com.opitzconsulting.orcas:orcas-domainextension-gradle-plugin:7.1.0"
+  }
+}
+
+apply plugin: "com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension"</code></pre>
+</div>
+<div role="tabpanel" class="tab-pane use" id="kotlin-usage">
+<h3>Using the <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">plugins DSL</a>:</h3>
+<pre><code class="language-kotlin">plugins {
+  id("com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension") version "7.1.0"
+}</code></pre>
+<h3>Using <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:old_plugin_application">legacy plugin application</a>:</h3>
+<pre><code class="language-kotlin">buildscript {
+  repositories {
+    maven {
+      url = uri("https://plugins.gradle.org/m2/")
+    }
+  }
+  dependencies {
+    classpath("com.opitzconsulting.orcas:orcas-domainextension-gradle-plugin:7.1.0")
+  }
+}
+
+apply(plugin = "com.opitzconsulting.orcas.orcas-gradle-plugin-domainextension")</code></pre>
+</div>
+</div>
+</div>
+<p>
+<a href="https://docs.gradle.org/current/userguide/plugins.html#sec:subprojects_plugins_dsl">
+<span class="glyphicon glyphicon-chevron-right"></span> Learn how to apply plugins to subprojects
+</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<footer>
+<p class="copyright">&copy; <a href="https://gradle.org/company/">Gradle, Inc.</a> 2019</p>
+</footer>
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
+<script type="text/javascript">
+piAId = '69052';
+piCId = '28805';
+
+(function() {
+function async_load(){
+var s = document.createElement('script'); s.type = 'text/javascript';
+s.src = ('https:' == document.location.protocol ? 'https://pi' : 'http://cdn') + '.pardot.com/pd.js';
+var c = document.getElementsByTagName('script')[0]; c.parentNode.insertBefore(s, c);
+}
+if(window.attachEvent) { window.attachEvent('onload', async_load); }
+else { window.addEventListener('load', async_load, false); }
+})();
+</script>
+<script src="/shared-assets/shared/scripts/prism.js"></script>
+<script src="/shared-assets/shared/scripts/collapse.js"></script>
+</body>
+</html>
