@@ -143,8 +143,8 @@ public class GradlePluginPortal {
         }
     }
 
-    private static final Pattern PLUGIN_ID_AND_VERSION_CODE_PATTERN = Pattern.compile("id \"(?<pluginId>[a-zA-Z0-9_\\-.]+)\" version \"(?<pluginVersion>[a-zA-Z0-9_\\-.]+)\"");
-    private static final Pattern PLUGIN_NOTATION_CODE_PATTERN = Pattern.compile("classpath \"(?<groupId>[a-zA-Z0-9_\\-.]+):(?<artifactId>[a-zA-Z_\\-]+):(?<version>[a-zA-Z0-9_\\-.]+)\"");
+    private static final Pattern PLUGIN_ID_AND_VERSION_CODE_PATTERN = Pattern.compile("id \"(?<pluginId>[a-zA-Z0-9_\\-.]+)\" version \"(?<pluginVersion>[a-zA-Z0-9_\\-.+]+)\"");
+    private static final Pattern PLUGIN_NOTATION_CODE_PATTERN = Pattern.compile("classpath \"(?<groupId>[a-zA-Z0-9_\\-.]+):(?<artifactId>[a-zA-Z_\\-]+):(?<version>[a-zA-Z0-9_\\-.+]+)\"");
 
     private class PluginPage extends PluginPortalPage {
         PluginPage(URL pageUrl) {
