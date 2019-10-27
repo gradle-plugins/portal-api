@@ -37,7 +37,7 @@ application {
 
 def cloneTask = tasks.register("cloneRepo", CloneWebsite) {
     repositoryDirectory = layout.buildDirectory.dir("gh-pages-repository")
-    repositoryUri = "https://github.com/gradle-plugins/gradle-plugins.github.io.git"
+    repositoryUri = "https://github.com/gradle-plugins/portal-api.git"
 }
 
 def commitTask = tasks.register("commitBucket", Commit) {
