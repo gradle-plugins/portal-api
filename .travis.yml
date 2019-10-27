@@ -1,4 +1,0 @@
-language: java
-jdk: openjdk8
-dist: xenial
-script: ./gradlew continuousIntegration -s
