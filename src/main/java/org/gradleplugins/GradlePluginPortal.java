@@ -56,10 +56,6 @@ public class GradlePluginPortal {
         try {
             visitor.visit(portalUrl);
             submit(() -> new SearchPage(portalUrl).visit(visitor));
-//            for (Iterator<PortalSearchPage> it = iterator(); it.hasNext(); ) {
-//                PortalSearchPage page = it.next();
-//                submit(() -> page.visit(visitor));
-//            }
         } finally {
             while (!futures.isEmpty()) {
                 while (!futures.firstElement().isDone()) {
@@ -77,34 +73,6 @@ public class GradlePluginPortal {
             executor = null;
         }
     }
-
-//    private Iterator<PortalSearchPage> iterator() {
-//        PortalSearchPage s = new PortalSearchPage() {
-//            @Override
-//            public void visit(GradlePluginPortalVisitor visitor) {
-//                throw new UnsupportedOperationException();
-//            }
-//
-//            @Nullable
-//            @Override
-//            public PortalSearchPage getNextPage() {
-//                return new SearchPage(portalUrl);
-//            }
-//        };
-//        return new Iterator<PortalSearchPage>() {
-//            PortalSearchPage nextPage = s;
-//
-//            @Override
-//            public boolean hasNext() {
-//                return nextPage.getNextPage() != null;
-//            }
-//
-//            @Override
-//            public PortalSearchPage next() {
-//                return (nextPage = nextPage.getNextPage());
-//            }
-//        };
-//    }
 
     private abstract class PluginPortalPage {
         private Document document;
@@ -206,19 +174,11 @@ public class GradlePluginPortal {
         }
     }
 
-    private interface PortalSearchPage {
-        @Nullable
-        PortalSearchPage getNextPage();
-
-        void visit(GradlePluginPortalVisitor visitor);
-    }
-
-    private class SearchPage extends PluginPortalPage implements PortalSearchPage {
+    private class SearchPage extends PluginPortalPage {
         public SearchPage(URL searchPageUrl) {
             super(searchPageUrl);
         }
 
-        @Override
         public void visit(GradlePluginPortalVisitor visitor) {
             Elements pluginElements = loadDocumentIfNeeded().select("#search-results > tbody > tr");
 
@@ -259,8 +219,7 @@ public class GradlePluginPortal {
         }
 
         @Nullable
-        @Override
-        public PortalSearchPage getNextPage() {
+        public SearchPage getNextPage() {
             if (hasMorePage()) {
                 return new SearchPage(getNextPageUrl());
             }
