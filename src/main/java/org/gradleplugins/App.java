@@ -13,6 +13,6 @@ public class App {
     }
 
     public static void main(String[] args) throws MalformedURLException {
-        GradlePluginPortal.connect(new URL("https://plugins.gradle.org/")).visit(new DumpRestApi(new File(args[0])));
+        GradlePluginPortal.connect(new URL("https://plugins.gradle.org/")).visit(new TravisKeepAliveVisitor(new DumpRestApi(new File(args[0]))));
     }
 }
